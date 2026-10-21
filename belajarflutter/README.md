@@ -85,6 +85,18 @@ Halaman menggunakan judul **List Data Produk**. Setiap data produk ditampilkan d
 
 <img src="ListDataProdukView.jpeg" width="250" />
 
+### 7. Hasil Running pada Emulator Android
+
+Berikut hasil menjalankan setiap halaman Modul 2 pada emulator Android melalui menu navigasi di `main.dart`.
+
+| Hello World | Widget Column | Widget Row |
+|:---:|:---:|:---:|
+| <img src="screenshots/hello%20world.png" width="200" /> | <img src="screenshots/widget%20column.png" width="200" /> | <img src="screenshots/widget%20row.png" width="200" /> |
+
+| Form Produk | List Data Produk |
+|:---:|:---:|
+| <img src="screenshots/form%20produk.png" width="200" /> | <img src="screenshots/list%20data%20produk.png" width="200" /> |
+
 ### Kesimpulan Praktikum
 
 Praktikum Modul 2 memberikan pemahaman mengenai penggunaan framework Flutter untuk membangun antarmuka aplikasi mobile multiplatform. Materi yang dipraktikkan meliputi pembuatan aplikasi Hello World, pemisahan kode menjadi beberapa file Dart, penyusunan widget secara vertikal dan horizontal menggunakan `Column` dan `Row`, pembuatan form produk beserta navigasi ke halaman detail menggunakan `Navigator`, serta penyajian daftar produk menggunakan `ListView`, `Card`, dan `ListTile`.
