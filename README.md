@@ -132,3 +132,35 @@ Halaman utama (`HomePage`) mengambil kembali username yang tersimpan di local st
 Berikut demo hasil menjalankan aplikasi Modul 3 (login `admin`/`admin`, penyimpanan username dengan `SharedPreferences`, serta navigasi Side Menu antara halaman Home dan About):
 
 <img src="router_flutter/screenrecords/running%20modul%203.gif" width="260" />
+
+---
+
+## Modul 4 — Operasi CRUD dengan API CodeIgniter 4 (Bagian 1)
+
+**Tanggal**: Minggu, 15 November 2026  
+**Direktori Proyek**: `tokokita/` (Flutter) & `toko-api/` (RESTful API CodeIgniter 4)
+
+### 1. Backend RESTful API (`toko-api/`)
+
+- **Database (`toko-api/toko_api.sql`)**: Skema database `toko_api` dengan tabel `member`, `member_token`, dan `produk`.
+- **Models (`toko-api/app/Models/`)**: `MRegistrasi.php`, `MMember.php`, `MLogin.php`, `MProduk.php`.
+- **Controllers (`toko-api/app/Controllers/`)**:
+  - `RestfulController.php`: Format response JSON standar (`code`, `status`, `data`).
+  - `RegistrasiController.php`: Endpoint `POST /registrasi`.
+  - `LoginController.php`: Endpoint `POST /login` dengan verifikasi password dan pembuatan `auth_key` token.
+  - `ProdukController.php`: Endpoint CRUD produk (`create`, `list`, `detail`, `ubah`, `hapus`).
+- **Routes (`toko-api/app/Config/Routes.php`)**: Definisi route `/registrasi`, `/login`, dan group `/produk`.
+
+### 2. Proyek Flutter Toko Kita — Model & UI (`tokokita/`)
+
+- **Models (`tokokita/lib/model/`)**:
+  - `login.dart`: Model response login (`code`, `status`, `token`, `userID`, `userEmail`).
+  - `registrasi.dart`: Model response registrasi (`code`, `status`, `data`).
+  - `produk.dart`: Model data produk (`id`, `kodeProduk`, `namaProduk`, `hargaProduk`).
+- **Halaman UI (`tokokita/lib/ui/`)**:
+  - `registrasi_page.dart`: Form registrasi (Nama, Email, Password, Konfirmasi Password) dengan validasi `FormState`.
+  - `login_page.dart`: Form login (Email, Password) beserta tautan navigasi ke halaman Registrasi.
+  - `produk_form.dart`: Form tambah dan ubah produk (`TAMBAH PRODUK` / `UBAH PRODUK`).
+  - `produk_detail.dart`: Halaman detail produk dengan tombol `EDIT` (ke `ProdukForm`) dan `DELETE` (konfirmasi `AlertDialog`).
+  - `produk_page.dart`: Halaman `List Produk` dengan tombol tambah (`+`), `Drawer` Logout, dan daftar `ItemProduk`.
+- **Titik Masuk (`tokokita/lib/main.dart`)**: Menjalankan aplikasi `Toko Kita` dan menampilkan `ProdukPage`.
