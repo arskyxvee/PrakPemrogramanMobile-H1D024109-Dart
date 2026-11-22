@@ -164,3 +164,30 @@ Berikut demo hasil menjalankan aplikasi Modul 3 (login `admin`/`admin`, penyimpa
   - `produk_detail.dart`: Halaman detail produk dengan tombol `EDIT` (ke `ProdukForm`) dan `DELETE` (konfirmasi `AlertDialog`).
   - `produk_page.dart`: Halaman `List Produk` dengan tombol tambah (`+`), `Drawer` Logout, dan daftar `ItemProduk`.
 - **Titik Masuk (`tokokita/lib/main.dart`)**: Menjalankan aplikasi `Toko Kita` dan menampilkan `ProdukPage`.
+
+---
+
+## Modul 5 — Operasi CRUD dengan API CodeIgniter 4 (Bagian 2)
+
+**Tanggal**: Minggu, 22 November 2026  
+**Direktori Proyek**: `tokokita/`
+
+Integrasi seluruh tampilan Flutter `tokokita` dengan RESTful API CodeIgniter 4 menggunakan package `http` dan penyimpanan token lokal `shared_preferences`.
+
+- **Helpers (`tokokita/lib/helpers/`)**:
+  - `user_info.dart`: Menyimpan dan mengambil `token` serta `userID` melalui `SharedPreferences`, termasuk fungsi `logout()`.
+  - `app_exception.dart`: Penanganan exception komunikasi HTTP (`FetchDataException`, `BadRequestException`, `UnauthorisedException`, `UnprocessableEntityException`, `InvalidInputException`).
+  - `api.dart`: Wrapper HTTP `post`, `get`, dan `delete` dengan header `Authorization: Bearer <token>`.
+  - `api_url.dart`: Daftar endpoint REST API (`http://10.0.2.2/toko-api/public`).
+- **BLoC (`tokokita/lib/bloc/`)**:
+  - `registrasi_bloc.dart`: Permintaan registrasi ke `POST /registrasi`.
+  - `login_bloc.dart`: Permintaan login ke `POST /login`.
+  - `logout_bloc.dart`: Menghapus sesi pengguna lokal.
+  - `produk_bloc.dart`: Operasi CRUD produk (`getProduks`, `addProduk`, `updateProduk`, `deleteProduk`).
+- **Common Dialog Widgets (`tokokita/lib/widget/`)**:
+  - `success_dialog.dart` & `warning_dialog.dart`: Dialog notifikasi sukses/gagal.
+- **Integrasi Fungsionalitas UI**:
+  - `main.dart`: Pengecekan status login via `UserInfo().getToken()` (otomatis ke `ProdukPage` jika sudah login, atau `LoginPage` jika belum).
+  - `registrasi_page.dart` & `login_page.dart`: Terhubung ke `RegistrasiBloc` dan `LoginBloc`.
+  - `produk_page.dart`: Memuat daftar produk dari REST API menggunakan `FutureBuilder` dan mengaktifkan tombol `Logout` pada `Drawer`.
+  - `produk_form.dart` & `produk_detail.dart`: Terhubung ke fungsi `simpan()`, `ubah()`, dan hapus produk melalui `ProdukBloc`.
